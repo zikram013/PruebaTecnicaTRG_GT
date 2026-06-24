@@ -25,6 +25,28 @@ namespace GtMotive.Estimate.Microservice.Domain.Vehicles
         }
 
         /// <summary>
+        /// Determines whether two customer identifiers are equal.
+        /// </summary>
+        /// <param name="left">The first customer identifier.</param>
+        /// <param name="right">The second customer identifier.</param>
+        /// <returns>A value indicating whether both customer identifiers are equal.</returns>
+        public static bool operator ==(CustomerId left, CustomerId right)
+        {
+            return left.Equals(right);
+        }
+
+        /// <summary>
+        /// Determines whether two customer identifiers are different.
+        /// </summary>
+        /// <param name="left">The first customer identifier.</param>
+        /// <param name="right">The second customer identifier.</param>
+        /// <returns>A value indicating whether both customer identifiers are different.</returns>
+        public static bool operator !=(CustomerId left, CustomerId right)
+        {
+            return !left.Equals(right);
+        }
+
+        /// <summary>
         /// Compares the current customer identifier with another customer identifier.
         /// </summary>
         /// <param name="other">The customer identifier to compare.</param>
@@ -35,7 +57,7 @@ namespace GtMotive.Estimate.Microservice.Domain.Vehicles
         }
 
         /// <inheritdoc />
-        public override bool Equals(object? obj)
+        public override bool Equals(object obj)
         {
             return obj is CustomerId other && Equals(other);
         }

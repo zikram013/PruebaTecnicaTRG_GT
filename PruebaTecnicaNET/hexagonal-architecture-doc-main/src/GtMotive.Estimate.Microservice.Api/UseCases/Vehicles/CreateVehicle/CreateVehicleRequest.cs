@@ -1,36 +1,38 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 using MediatR;
 
 namespace GtMotive.Estimate.Microservice.Api.UseCases.Vehicles.CreateVehicle
 {
     /// <summary>
-    /// HTTP request used to create a new vehicle in the fleet.
+    /// HTTP request for creating a vehicle.
     /// </summary>
     public sealed class CreateVehicleRequest : IRequest<IWebApiPresenter>
     {
         /// <summary>
-        /// Gets or sets the vehicle plate.
+        /// Gets the vehicle plate.
         /// </summary>
         [Required]
-        public string Plate { get; set; } = string.Empty;
+        public string Plate { get; init; } = string.Empty;
 
         /// <summary>
-        /// Gets or sets the vehicle brand.
+        /// Gets the vehicle brand.
         /// </summary>
         [Required]
-        public string Brand { get; set; } = string.Empty;
+        public string Brand { get; init; } = string.Empty;
 
         /// <summary>
-        /// Gets or sets the vehicle model.
+        /// Gets the vehicle model.
         /// </summary>
         [Required]
-        public string Model { get; set; } = string.Empty;
+        public string Model { get; init; } = string.Empty;
 
         /// <summary>
-        /// Gets or sets the vehicle manufacturing date.
+        /// Gets the vehicle manufacturing date.
         /// </summary>
         [Required]
-        public DateOnly ManufacturingDate { get; set; }
+        [JsonRequired]
+        public DateOnly ManufacturingDate { get; init; }
     }
 }

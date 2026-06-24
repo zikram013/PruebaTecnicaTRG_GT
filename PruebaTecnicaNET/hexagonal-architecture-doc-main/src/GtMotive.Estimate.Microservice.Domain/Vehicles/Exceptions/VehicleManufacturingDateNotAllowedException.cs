@@ -1,5 +1,4 @@
 ﻿using System;
-using GtMotive.Estimate.Microservice.Domain;
 
 namespace GtMotive.Estimate.Microservice.Domain.Vehicles.Exceptions
 {

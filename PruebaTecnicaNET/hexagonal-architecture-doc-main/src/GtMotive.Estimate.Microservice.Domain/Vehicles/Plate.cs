@@ -1,6 +1,4 @@
-﻿#nullable enable
-
-using System;
+﻿using System;
 using System.Globalization;
 using GtMotive.Estimate.Microservice.Domain.Vehicles.Exceptions;
 
@@ -11,7 +9,7 @@ namespace GtMotive.Estimate.Microservice.Domain.Vehicles
     /// </summary>
     public readonly struct Plate : IEquatable<Plate>
     {
-        private readonly string? _value;
+        private readonly string _value;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Plate"/> struct.
@@ -30,8 +28,8 @@ namespace GtMotive.Estimate.Microservice.Domain.Vehicles
         /// <summary>
         /// Determines whether two plates are equal.
         /// </summary>
-        /// <param name="left">The first plate to compare.</param>
-        /// <param name="right">The second plate to compare.</param>
+        /// <param name="left">The first plate.</param>
+        /// <param name="right">The second plate.</param>
         /// <returns>A value indicating whether both plates are equal.</returns>
         public static bool operator ==(Plate left, Plate right)
         {
@@ -41,8 +39,8 @@ namespace GtMotive.Estimate.Microservice.Domain.Vehicles
         /// <summary>
         /// Determines whether two plates are different.
         /// </summary>
-        /// <param name="left">The first plate to compare.</param>
-        /// <param name="right">The second plate to compare.</param>
+        /// <param name="left">The first plate.</param>
+        /// <param name="right">The second plate.</param>
         /// <returns>A value indicating whether both plates are different.</returns>
         public static bool operator !=(Plate left, Plate right)
         {
@@ -60,7 +58,7 @@ namespace GtMotive.Estimate.Microservice.Domain.Vehicles
         }
 
         /// <inheritdoc />
-        public override bool Equals(object? obj)
+        public override bool Equals(object obj)
         {
             return obj is Plate other && Equals(other);
         }
@@ -68,13 +66,13 @@ namespace GtMotive.Estimate.Microservice.Domain.Vehicles
         /// <inheritdoc />
         public override int GetHashCode()
         {
-            return _value is null ? 0 : StringComparer.Ordinal.GetHashCode(_value);
+            return StringComparer.Ordinal.GetHashCode(_value);
         }
 
         /// <inheritdoc />
         public override string ToString()
         {
-            return _value ?? string.Empty;
+            return _value;
         }
     }
 }

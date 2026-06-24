@@ -1,6 +1,4 @@
-﻿#nullable enable
-
-using System;
+﻿using System;
 using System.Globalization;
 using GtMotive.Estimate.Microservice.Domain.Vehicles.Exceptions;
 
@@ -33,8 +31,8 @@ namespace GtMotive.Estimate.Microservice.Domain.Vehicles
         /// <summary>
         /// Determines whether two vehicle identifiers are equal.
         /// </summary>
-        /// <param name="left">The first vehicle identifier to compare.</param>
-        /// <param name="right">The second vehicle identifier to compare.</param>
+        /// <param name="left">The first vehicle identifier.</param>
+        /// <param name="right">The second vehicle identifier.</param>
         /// <returns>A value indicating whether both vehicle identifiers are equal.</returns>
         public static bool operator ==(VehicleId left, VehicleId right)
         {
@@ -44,8 +42,8 @@ namespace GtMotive.Estimate.Microservice.Domain.Vehicles
         /// <summary>
         /// Determines whether two vehicle identifiers are different.
         /// </summary>
-        /// <param name="left">The first vehicle identifier to compare.</param>
-        /// <param name="right">The second vehicle identifier to compare.</param>
+        /// <param name="left">The first vehicle identifier.</param>
+        /// <param name="right">The second vehicle identifier.</param>
         /// <returns>A value indicating whether both vehicle identifiers are different.</returns>
         public static bool operator !=(VehicleId left, VehicleId right)
         {
@@ -82,7 +80,7 @@ namespace GtMotive.Estimate.Microservice.Domain.Vehicles
         }
 
         /// <inheritdoc />
-        public override bool Equals(object? obj)
+        public override bool Equals(object obj)
         {
             return obj is VehicleId other && Equals(other);
         }

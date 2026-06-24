@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GtMotive.Estimate.Microservice.Domain.Vehicles.Exceptions
 {
@@ -36,7 +32,5 @@ namespace GtMotive.Estimate.Microservice.Domain.Vehicles.Exceptions
             : base(message, innerException)
         {
         }
-    }
-    {
     }
 }
