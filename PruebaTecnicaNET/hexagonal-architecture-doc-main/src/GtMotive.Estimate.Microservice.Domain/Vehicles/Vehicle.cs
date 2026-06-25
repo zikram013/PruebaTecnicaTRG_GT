@@ -109,6 +109,36 @@ namespace GtMotive.Estimate.Microservice.Domain.Vehicles
         }
 
         /// <summary>
+        /// Restores an existing vehicle from persistence.
+        /// </summary>
+        /// <param name="id">The vehicle identifier.</param>
+        /// <param name="plate">The vehicle plate.</param>
+        /// <param name="brand">The vehicle brand.</param>
+        /// <param name="model">The vehicle model.</param>
+        /// <param name="manufacturingDate">The vehicle manufacturing date.</param>
+        /// <param name="status">The vehicle status.</param>
+        /// <param name="currentCustomerId">The current customer identifier.</param>
+        /// <returns>The restored vehicle.</returns>
+        public static Vehicle Restore(
+            VehicleId id,
+            Plate plate,
+            string brand,
+            string model,
+            DateOnly manufacturingDate,
+            VehicleStatus status,
+            CustomerId? currentCustomerId)
+        {
+            return new Vehicle(
+                id,
+                plate,
+                brand,
+                model,
+                manufacturingDate,
+                status,
+                currentCustomerId);
+        }
+
+        /// <summary>
         /// Rents the vehicle to a customer.
         /// </summary>
         /// <param name="customerId">The customer that requests the rental.</param>

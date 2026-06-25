@@ -9,6 +9,7 @@ using GtMotive.Estimate.Microservice.Host.Configuration;
 using GtMotive.Estimate.Microservice.Host.DependencyInjection;
 using GtMotive.Estimate.Microservice.Infrastructure;
 using GtMotive.Estimate.Microservice.Infrastructure.MongoDb.Settings;
+using GtMotive.Estimate.Microservice.Infrastructure.Persistence;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.AspNetCore.Builder;
@@ -60,12 +61,13 @@ builder.Services.AddSwaggerGen();
 var appSettingsSection = builder.Configuration.GetSection("AppSettings");
 builder.Services.Configure<AppSettings>(appSettingsSection);
 var appSettings = appSettingsSection.Get<AppSettings>();
+
 builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("MongoDb"));
 
 builder.Services.AddControllers(ApiConfiguration.ConfigureControllers)
     .WithApiControllers();
 
-builder.Services.AddBaseInfrastructure(builder.Environment.IsDevelopment());
+builder.Services.AddSqliteInfrastructure(builder.Environment.IsDevelopment(), builder.Configuration);
 
 builder.Services.Configure<ForwardedHeadersOptions>(options =>
 {
@@ -73,8 +75,7 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
                                ForwardedHeaders.XForwardedProto;
 
     // Only loopback proxies are allowed by default.
-    // Clear that restriction because forwarders are enabled by explicit
-    // configuration.
+    // Clear that restriction because forwarders are enabled by explicit configuration.
     options.KnownNetworks.Clear();
     options.KnownProxies.Clear();
 });
@@ -82,9 +83,9 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
 JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
 builder.Services.AddAuthentication(options =>
-    {
-        options.DefaultScheme = IdentityServerAuthenticationDefaults.AuthenticationScheme;
-    })
+{
+    options.DefaultScheme = IdentityServerAuthenticationDefaults.AuthenticationScheme;
+})
     .AddIdentityServerAuthentication(options =>
     {
         options.Authority = appSettings.JwtAuthority;
@@ -115,9 +116,16 @@ Log.Logger = builder.Environment.IsDevelopment() ?
             outputTemplate: "[{Timestamp:yyyy-MM-dd HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}",
             formatProvider: CultureInfo.InvariantCulture)
         .WriteTo.ApplicationInsights(
-            app.Services.GetRequiredService<TelemetryConfiguration>(), TelemetryConverter.Traces)
+            app.Services.GetRequiredService<TelemetryConfiguration>(),
+            TelemetryConverter.Traces)
         .ReadFrom.Configuration(builder.Configuration)
         .CreateLogger();
+
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<RentingDbContext>();
+    await context.Database.EnsureCreatedAsync().ConfigureAwait(false);
+}
 
 var pathBase = new PathBase(builder.Configuration.GetValue("PathBase", defaultValue: PathBase.DefaultPathBase));
 
@@ -134,9 +142,12 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseSwaggerInApplication(pathBase, builder.Configuration);
+
 app.UseRouting();
+
 app.UseAuthentication();
 app.UseAuthorization();
+
 app.MapControllers();
 
-await app.RunAsync();
+await app.RunAsync().ConfigureAwait(false);
