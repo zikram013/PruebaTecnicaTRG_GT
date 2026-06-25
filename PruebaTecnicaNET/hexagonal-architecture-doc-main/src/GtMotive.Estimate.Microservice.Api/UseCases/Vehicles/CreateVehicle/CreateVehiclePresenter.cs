@@ -1,4 +1,4 @@
-﻿using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.CreateVehicle;
+﻿using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.CreateVehicle;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using GtMotive.Estimate.Microservice.Domain.Interfaces;
 using GtMotive.Estimate.Microservice.Domain.Vehicles;
 
-namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.RentVehicle
+namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.RentVehicle
 {
     /// <summary>
     /// Use case responsible for renting an available vehicle to a customer.

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.CreateVehicle
+namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.CreateVehicle
 {
     /// <summary>
     /// Input message for the create vehicle use case.

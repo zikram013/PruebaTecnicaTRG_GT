@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using GtMotive.Estimate.Microservice.Domain.Vehicles;
 
-namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.GetAvailableVehicles
+namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.GetAvailableVehicles
 {
     /// <summary>
     /// Use case responsible for listing the available vehicles in the fleet.

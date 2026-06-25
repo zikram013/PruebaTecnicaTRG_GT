@@ -1,6 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.RentVehicle;
+using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.RentVehicle;
 
 namespace GtMotive.Estimate.Microservice.Api.UseCases.Vehicles.RentVehicle
 {

@@ -1,4 +1,4 @@
-﻿using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.RentVehicle;
+﻿using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.RentVehicle;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

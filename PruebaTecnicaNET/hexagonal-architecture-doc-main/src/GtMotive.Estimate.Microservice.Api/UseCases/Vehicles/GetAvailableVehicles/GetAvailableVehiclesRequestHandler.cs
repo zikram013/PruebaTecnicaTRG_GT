@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.GetAvailableVehicles;
+using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.GetAvailableVehicles;
 using MediatR;
 
 namespace GtMotive.Estimate.Microservice.Api.UseCases.Vehicles.GetAvailableVehicles

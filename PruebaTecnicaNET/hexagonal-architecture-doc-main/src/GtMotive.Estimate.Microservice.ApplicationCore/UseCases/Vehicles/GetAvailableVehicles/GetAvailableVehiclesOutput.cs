@@ -1,18 +1,18 @@
 ﻿using System;
 using GtMotive.Estimate.Microservice.Domain.Vehicles;
 
-namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.CreateVehicle
+namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.GetAvailableVehicles
 {
     /// <summary>
-    /// Output message for the create vehicle use case.
+    /// Represents an available vehicle in the use case output.
     /// </summary>
-    public sealed class CreateVehicleOutput : IUseCaseOutput
+    public sealed class GetAvailableVehiclesOutput
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateVehicleOutput"/> class.
+        /// Initializes a new instance of the <see cref="GetAvailableVehiclesOutput"/> class.
         /// </summary>
-        /// <param name="vehicle">The created vehicle.</param>
-        public CreateVehicleOutput(Vehicle vehicle)
+        /// <param name="vehicle">The available vehicle.</param>
+        public GetAvailableVehiclesOutput(Vehicle vehicle)
         {
             ArgumentNullException.ThrowIfNull(vehicle);
 

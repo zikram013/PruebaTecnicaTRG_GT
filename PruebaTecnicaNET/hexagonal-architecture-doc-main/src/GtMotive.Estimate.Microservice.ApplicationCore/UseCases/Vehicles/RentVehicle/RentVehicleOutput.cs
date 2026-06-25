@@ -1,7 +1,7 @@
 ﻿using System;
 using GtMotive.Estimate.Microservice.Domain.Vehicles;
 
-namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.RentVehicle
+namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.RentVehicle
 {
     /// <summary>
     /// Output message for the rent vehicle use case.

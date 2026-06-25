@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using GtMotive.Estimate.Microservice.Api.UseCases.Vehicles.CreateVehicle;
 using GtMotive.Estimate.Microservice.Api.UseCases.Vehicles.GetAvailableVehicles;
 using GtMotive.Estimate.Microservice.Api.UseCases.Vehicles.RentVehicle;
+using GtMotive.Estimate.Microservice.Api.UseCases.Vehicles.ReturnVehicle;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -58,6 +59,19 @@ namespace GtMotive.Estimate.Microservice.Api.UseCases.Vehicles
 
             var command = new RentVehicleCommand(vehicleId, request.CustomerId);
             var presenter = await _mediator.Send(command).ConfigureAwait(false);
+
+            return presenter.ActionResult;
+        }
+
+        /// <summary>
+        /// Returns a rented vehicle.
+        /// </summary>
+        /// <param name="vehicleId">The vehicle identifier.</param>
+        /// <returns>The HTTP action result.</returns>
+        [HttpPost("{vehicleId:guid}/returns")]
+        public async Task<IActionResult> Return(Guid vehicleId)
+        {
+            var presenter = await _mediator.Send(new ReturnVehicleCommand(vehicleId)).ConfigureAwait(false);
 
             return presenter.ActionResult;
         }

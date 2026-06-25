@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.GetAvailableVehicles
+namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.GetAvailableVehicles
 {
     /// <summary>
     /// Output message containing the available vehicles in the fleet.

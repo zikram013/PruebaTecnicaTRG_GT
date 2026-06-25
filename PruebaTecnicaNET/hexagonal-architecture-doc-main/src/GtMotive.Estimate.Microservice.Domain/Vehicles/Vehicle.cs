@@ -159,5 +159,19 @@ namespace GtMotive.Estimate.Microservice.Domain.Vehicles
             Status = VehicleStatus.Rented;
             CurrentCustomerId = customerId;
         }
+
+        /// <summary>
+        /// Returns the vehicle and makes it available again.
+        /// </summary>
+        public void Return()
+        {
+            if (Status != VehicleStatus.Rented)
+            {
+                throw new VehicleIsNotRentedException("The vehicle is not currently rented.");
+            }
+
+            Status = VehicleStatus.Available;
+            CurrentCustomerId = null;
+        }
     }
 }

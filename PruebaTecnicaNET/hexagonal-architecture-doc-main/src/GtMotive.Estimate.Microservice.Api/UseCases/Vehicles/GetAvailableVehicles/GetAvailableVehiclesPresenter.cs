@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.GetAvailableVehicles;
+using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.GetAvailableVehicles;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GtMotive.Estimate.Microservice.Api.UseCases.Vehicles.GetAvailableVehicles

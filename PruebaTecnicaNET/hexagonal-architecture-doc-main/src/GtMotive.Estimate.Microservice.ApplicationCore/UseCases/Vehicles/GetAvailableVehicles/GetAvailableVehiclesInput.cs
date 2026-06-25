@@ -1,4 +1,4 @@
-﻿namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.GetAvailableVehicles
+﻿namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.GetAvailableVehicles
 {
     /// <summary>
     /// Input message for querying available vehicles.

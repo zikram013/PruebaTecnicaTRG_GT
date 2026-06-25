@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.RentVehicle
+namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.RentVehicle
 {
     /// <summary>
     /// Input message for the rent vehicle use case.

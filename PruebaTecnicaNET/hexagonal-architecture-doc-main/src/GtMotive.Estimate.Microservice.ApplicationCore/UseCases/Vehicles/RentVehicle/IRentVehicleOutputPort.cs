@@ -1,4 +1,4 @@
-﻿namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.RentVehicle
+﻿namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.RentVehicle
 {
     /// <summary>
     /// Output port for the rent vehicle use case.
