@@ -30,5 +30,26 @@ namespace GtMotive.Estimate.Microservice.UnitTests.Vehicles
             action.Should().Throw<VehicleManufacturingDateNotAllowedException>()
                 .WithMessage("*5 years*");
         }
+
+        /// <summary>
+        /// Ensures that a vehicle cannot be created with a manufacturing date in the future.
+        /// </summary>
+        [Fact]
+        public void CreateShouldFailWhenManufacturingDateIsInTheFuture()
+        {
+            var today = new DateOnly(2026, 6, 25);
+            var futureManufacturingDate = today.AddYears(100);
+
+            var action = () => Vehicle.Create(
+                new Plate("1234ABC"),
+                "Toyota",
+                "Corolla",
+                futureManufacturingDate,
+                today);
+
+            action.Should()
+                .Throw<VehicleManufacturingDateNotAllowedException>()
+                .WithMessage("The vehicle manufacturing date cannot be in the future.");
+        }
     }
 }

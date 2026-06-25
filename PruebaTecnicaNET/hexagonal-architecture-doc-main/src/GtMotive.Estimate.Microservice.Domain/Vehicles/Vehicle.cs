@@ -96,16 +96,23 @@ namespace GtMotive.Estimate.Microservice.Domain.Vehicles
 
             var minimumAllowedManufacturingDate = today.AddYears(-5);
 
-            return manufacturingDate < minimumAllowedManufacturingDate
-                ? throw new VehicleManufacturingDateNotAllowedException("The fleet cannot contain vehicles older than 5 years.")
-                : new Vehicle(
-                VehicleId.New(),
-                plate,
-                brand.Trim(),
-                model.Trim(),
-                manufacturingDate,
-                VehicleStatus.Available,
-                null);
+            return manufacturingDate switch
+            {
+                _ when manufacturingDate > today =>
+                    throw new VehicleManufacturingDateNotAllowedException("The vehicle manufacturing date cannot be in the future."),
+
+                _ when manufacturingDate < minimumAllowedManufacturingDate =>
+                    throw new VehicleManufacturingDateNotAllowedException("The fleet cannot contain vehicles older than 5 years."),
+
+                _ => new Vehicle(
+                    VehicleId.New(),
+                    plate,
+                    brand.Trim(),
+                    model.Trim(),
+                    manufacturingDate,
+                    VehicleStatus.Available,
+                    null),
+            };
         }
 
         /// <summary>
